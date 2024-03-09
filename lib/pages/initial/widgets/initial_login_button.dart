@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
 class InitialLoginButton extends StatelessWidget {
+  final Function()? onPressed;
+
   const InitialLoginButton({
     super.key,
+    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        Navigator.pushReplacementNamed(context, '/home');
-      },
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
           backgroundColor: Colors.black,
           padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),

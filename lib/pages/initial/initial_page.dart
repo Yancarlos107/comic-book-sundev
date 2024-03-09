@@ -1,4 +1,5 @@
 import 'package:comic_book/pages/initial/widgets/widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class InitialPage extends StatelessWidget {
@@ -17,7 +18,7 @@ class InitialPage extends StatelessWidget {
         image: AssetImage('assets/images/login_background.png'),
         fit: BoxFit.fill,
       )),
-      child: const Scaffold(
+      child: Scaffold(
         backgroundColor: Colors.transparent,
         body: InitialContent(),
       ),
@@ -26,11 +27,19 @@ class InitialPage extends StatelessWidget {
 }
 
 class InitialContent extends StatelessWidget {
-  const InitialContent({
+  InitialContent({
     super.key,
   });
 
   final _height = 20.0;
+  final userController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  void signInUser() async {
+    print('User: ${userController.text} Password: ${passwordController.text}');
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: userController.text, password: passwordController.text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,21 +51,25 @@ class InitialContent extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.05,
           ),
-          const InitialFormTextField(
+          InitialFormTextField(
             hintText: 'Email',
             errorText: 'Enter an valid email',
+            controller: userController,
           ),
           SizedBox(
             height: _height,
           ),
-          const InitialFormTextField(
+          InitialFormTextField(
             hintText: 'Password',
             errorText: 'Enter an valid password',
+            controller: passwordController,
           ),
           SizedBox(
             height: _height,
           ),
-          const InitialLoginButton(),
+          InitialLoginButton(
+            onPressed: signInUser,
+          ),
           SizedBox(
             height: _height,
           ),

@@ -17,6 +17,7 @@ class InitialFormTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       validator: (value) => value!.isEmpty ? errorText : null,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       style: DecorationApp.formFieldText,
