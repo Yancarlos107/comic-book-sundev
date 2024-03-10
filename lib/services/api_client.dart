@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
@@ -13,16 +11,15 @@ class ApiClient {
       Map<String, String>? queryParameters}) async {
     var url = Uri.parse(baseUrl + path);
     if (queryParameters != null) {
-      final queryParamsString = queryParameters.entries.map((entry) {
-        final key = Uri.encodeQueryComponent(entry.key);
-        final value = Uri.encodeQueryComponent(entry.value);
-        return MapEntry(key, value);
-      }).join('&');
-
+      final queryParamsString = Uri(queryParameters: queryParameters)
+          .queryParametersAll
+          .entries
+          .map((entry) =>
+              '${Uri.encodeComponent(entry.key)}=${Uri.encodeComponent(entry.value.first)}')
+          .join('&');
       url = Uri.parse('$url?$queryParamsString');
     }
     final response = await http.get(url, headers: headers);
-
     handleResponse(response);
 
     return response;
@@ -58,6 +55,7 @@ class ApiClient {
 
   void handleResponse(Response response) {
     if (response.statusCode >= 400) {
+      print(response.body);
       throw ApiException(response.statusCode, response.body);
     }
   }
@@ -71,7 +69,6 @@ class ApiException implements Exception {
 
   @override
   String toString() {
-    final bodyDecode = jsonDecode(body);
     if (statusCode == 401) {}
 
     return 'ApiException(statusCode: $statusCode, body: $body)';

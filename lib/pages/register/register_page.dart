@@ -1,5 +1,4 @@
 import 'package:comic_book/pages/initial/widgets/widgets.dart';
-import 'package:comic_book/pages/pages.dart';
 import 'package:comic_book/styles/decoration.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
