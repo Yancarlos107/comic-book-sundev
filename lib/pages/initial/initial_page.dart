@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:comic_book/pages/initial/widgets/widgets.dart';
+import 'package:comic_book/services/auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -61,8 +62,6 @@ class _InitialContentState extends State<InitialContent> {
         duration: const Duration(seconds: 5),
       ));
     }
-
-    final token = await FirebaseAuth.instance.currentUser!.getIdToken();
   }
 
   @override
@@ -99,7 +98,9 @@ class _InitialContentState extends State<InitialContent> {
           const SizedBox(
             height: 20,
           ),
-          const LogoGoogle(),
+          LogoGoogle(
+            onTap: () => AuthService().signInWithGoogle(),
+          ),
           const InitialRegisterButton()
         ],
       ),

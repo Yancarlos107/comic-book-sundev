@@ -12,7 +12,12 @@
           "package_name": "com.example.comic_book"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "875656324603-6akn9bqokh99kpqt1g39rgo89a4dfttm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCLujk9gMCNSoMkMEtA5T9GL7rCkP1xIIk"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875656324603-6akn9bqokh99kpqt1g39rgo89a4dfttm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "875656324603-48hf3rm3gdbiao3gtsl8u51clsstsme7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.comicBook"
+              }
+            }
+          ]
         }
       }
     }

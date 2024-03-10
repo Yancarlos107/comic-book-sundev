@@ -25,6 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
       if (passwordController.text == confirmPasswordController.text) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: userController.text, password: passwordController.text);
+        Navigator.pop(context);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Passwords do not match'),
@@ -39,7 +40,6 @@ class _RegisterPageState extends State<RegisterPage> {
         duration: const Duration(seconds: 5),
       ));
     }
-    Navigator.pop(context);
   }
 
   @override

@@ -69,6 +69,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '875656324603',
     projectId: 'comic-book-74280',
     storageBucket: 'comic-book-74280.appspot.com',
+    iosClientId: '875656324603-48hf3rm3gdbiao3gtsl8u51clsstsme7.apps.googleusercontent.com',
     iosBundleId: 'com.example.comicBook',
   );
 }
