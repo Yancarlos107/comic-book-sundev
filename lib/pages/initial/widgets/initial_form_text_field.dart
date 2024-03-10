@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../styles/decoration.dart';
 
-class InitialFormTextField extends StatelessWidget {
+class InitialFormTextField extends StatefulWidget {
   final String hintText;
   final String errorText;
   final TextEditingController? controller;
@@ -15,17 +15,23 @@ class InitialFormTextField extends StatelessWidget {
   });
 
   @override
+  State<InitialFormTextField> createState() => _InitialFormTextFieldState();
+}
+
+class _InitialFormTextFieldState extends State<InitialFormTextField> {
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
-      validator: (value) => value!.isEmpty ? errorText : null,
+      controller: widget.controller,
+      validator: (value) => value!.isEmpty ? widget.errorText : null,
       autovalidateMode: AutovalidateMode.onUserInteraction,
+      keyboardType: TextInputType.text,
       style: DecorationApp.formFieldText,
       decoration: InputDecoration(
         errorBorder: DecorationApp.enabledBorder,
         errorStyle: DecorationApp.textErrorFormStyle,
         focusedErrorBorder: DecorationApp.focusedBorder,
-        hintText: hintText,
+        hintText: widget.hintText,
         hintStyle: DecorationApp.textFormStyle,
         enabledBorder: DecorationApp.enabledBorder,
         focusedBorder: DecorationApp.focusedBorder,

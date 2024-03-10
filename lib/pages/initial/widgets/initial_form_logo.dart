@@ -1,3 +1,4 @@
+import 'package:comic_book/styles/decoration.dart';
 import 'package:flutter/material.dart';
 
 class InitialFormLogo extends StatelessWidget {
@@ -14,11 +15,7 @@ class InitialFormLogo extends StatelessWidget {
         RotationTransition(
           turns: const AlwaysStoppedAnimation(-30 / 360),
           child: Text('Comic      Book',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 60,
-                  fontFamily: 'Edo',
-                  color: Colors.yellow.shade300)),
+              textAlign: TextAlign.center, style: DecorationApp.titleStyle),
         ),
       ],
     );

@@ -38,4 +38,7 @@ class DecorationApp {
       fontSize: 16,
       fontFamily: 'Manrope',
       fontWeight: FontWeight.w400);
+
+  static TextStyle titleStyle =
+      TextStyle(fontSize: 60, fontFamily: 'Edo', color: Colors.yellow.shade300);
 }

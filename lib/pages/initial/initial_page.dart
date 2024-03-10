@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:comic_book/pages/initial/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,7 @@ class InitialPage extends StatelessWidget {
         image: AssetImage('assets/images/login_background.png'),
         fit: BoxFit.fill,
       )),
-      child: Scaffold(
+      child: const Scaffold(
         backgroundColor: Colors.transparent,
         body: InitialContent(),
       ),
@@ -26,19 +28,41 @@ class InitialPage extends StatelessWidget {
   }
 }
 
-class InitialContent extends StatelessWidget {
-  InitialContent({
+class InitialContent extends StatefulWidget {
+  const InitialContent({
     super.key,
   });
 
+  @override
+  State<InitialContent> createState() => _InitialContentState();
+}
+
+class _InitialContentState extends State<InitialContent> {
   final _height = 20.0;
+
   final userController = TextEditingController();
+
   final passwordController = TextEditingController();
 
   void signInUser() async {
-    print('User: ${userController.text} Password: ${passwordController.text}');
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: userController.text, password: passwordController.text);
+    showDialog(
+        context: context,
+        builder: (context) => const Center(child: CircularProgressIndicator()));
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: userController.text, password: passwordController.text);
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(e.message!),
+        duration: const Duration(seconds: 5),
+      ));
+    }
+
+    final token = await FirebaseAuth.instance.currentUser!.getIdToken();
   }
 
   @override
@@ -67,9 +91,7 @@ class InitialContent extends StatelessWidget {
           SizedBox(
             height: _height,
           ),
-          InitialLoginButton(
-            onPressed: signInUser,
-          ),
+          InitialLoginButton(text: 'Login', onPressed: signInUser),
           SizedBox(
             height: _height,
           ),

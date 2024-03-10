@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 class InitialLoginButton extends StatelessWidget {
-  final String text;
   final Function()? onPressed;
 
   const InitialLoginButton({
     super.key,
     required this.onPressed,
-    required this.text,
   });
 
   @override
@@ -19,9 +17,9 @@ class InitialLoginButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-      child: Text(
-        text,
-        style: const TextStyle(
+      child: const Text(
+        'Login',
+        style: TextStyle(
             fontSize: 20,
             fontFamily: 'Edo',
             color: Colors.yellow,
