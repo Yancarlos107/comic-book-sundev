@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../services/auth_services.dart';
+import '../services/oauth_google_services.dart';
 
 class AuthenticationProvider with ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   final validSession = FirebaseAuth.instance.authStateChanges();
 
-  final _isLoading = false;
+  bool _isLoading = false;
   String _errorMessage = '';
 
   double _height = 20.0;
@@ -27,28 +27,35 @@ class AuthenticationProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  set isLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+
   bool get isLoading => _isLoading;
   bool get isError => _errorMessage.isNotEmpty;
   String get errorMessage => _errorMessage;
 
-  Future<void> signInUser() async {
+  Future<void> signIn() async {
+    isLoading = true;
     try {
       await _auth.signInWithEmailAndPassword(
           email: userController.text, password: passwordController.text);
     } on FirebaseAuthException catch (e) {
       errorMessage = e.message!;
     } finally {
+      isLoading = false;
       userController.clear();
       passwordController.clear();
       notifyListeners();
     }
   }
 
-  void signuserOut() async {
+  void signOut() async {
     FirebaseAuth.instance.signOut();
   }
 
   void loginWithGoogle() async {
-    AuthService().signInWithGoogle();
+    OAuthGoogleService().signIn();
   }
 }

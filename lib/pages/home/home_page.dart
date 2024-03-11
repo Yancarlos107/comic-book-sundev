@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             color: Colors.black,
-            onPressed: authProvider.signuserOut,
+            onPressed: authProvider.signOut,
             icon: const Icon(Icons.logout_rounded),
           ),
         ],

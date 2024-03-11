@@ -69,7 +69,7 @@ class _InitialContentState extends State<InitialContent> {
           SizedBox(
             height: authProvider.height,
           ),
-          CustomSignButton(text: 'Login', onPressed: authProvider.signInUser),
+          CustomSignButton(text: 'Login', onPressed: authProvider.signIn),
           SizedBox(
             height: authProvider.height,
           ),
