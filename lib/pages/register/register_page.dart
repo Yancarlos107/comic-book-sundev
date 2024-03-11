@@ -53,7 +53,29 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(height: 20),
               CustomSignButton(
                 text: 'Register',
-                onPressed: registerProvider.signUserUp,
+                onPressed: () async {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const Center(child: CircularProgressIndicator());
+                      });
+                  await registerProvider.signUserUp().then((value) {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Login successful'),
+                      ),
+                    );
+                  }).catchError((error) {
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(error.toString()),
+                      ),
+                    );
+                  });
+                },
               ),
             ],
           ),

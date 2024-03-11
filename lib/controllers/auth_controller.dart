@@ -41,8 +41,10 @@ class AuthenticationProvider with ChangeNotifier {
     try {
       await _auth.signInWithEmailAndPassword(
           email: userController.text, password: passwordController.text);
+      errorMessage = 'Login successful';
     } on FirebaseAuthException catch (e) {
       errorMessage = e.message!;
+      throw Exception(e.message);
     } finally {
       isLoading = false;
       userController.clear();

@@ -69,7 +69,30 @@ class _InitialContentState extends State<InitialContent> {
           SizedBox(
             height: authProvider.height,
           ),
-          CustomSignButton(text: 'Login', onPressed: authProvider.signIn),
+          CustomSignButton(
+              text: 'Login',
+              onPressed: () async {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const Center(child: CircularProgressIndicator());
+                    });
+                await authProvider.signIn().then((value) {
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Login successful'),
+                    ),
+                  );
+                }).catchError((error) {
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(error.toString()),
+                    ),
+                  );
+                });
+              }),
           SizedBox(
             height: authProvider.height,
           ),

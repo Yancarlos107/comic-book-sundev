@@ -29,7 +29,7 @@ class RegisterProvider extends ChangeNotifier {
   bool get isPasswordMatch =>
       _passwordController.text == _confirmPasswordController.text;
 
-  void signUserUp() async {
+  Future signUserUp() async {
     try {
       if (passwordController.text == confirmPasswordController.text) {
         await _auth.createUserWithEmailAndPassword(
@@ -39,6 +39,7 @@ class RegisterProvider extends ChangeNotifier {
       }
     } on FirebaseAuthException catch (e) {
       errorMessage = e.message!;
+      throw Exception(e.message);
     } finally {
       userController.clear();
       passwordController.clear();
