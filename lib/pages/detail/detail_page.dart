@@ -56,29 +56,27 @@ class _DetailsContentState extends State<DetailsContent> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               ImageIssueDetails(
-                url: dataDetailProvider.dataDetailModel['results']['image']
-                    ['original_url'],
-              ),
+                  url: dataDetailProvider
+                      .dataDetailModel.results!.image.originalUrl),
               const Text('Characters'),
               const Divider(),
               GridPropertiesItems(
                 errorMessage: 'No characters found',
-                data: dataDetailProvider.dataDetailModel['results']
-                    ['character_credits'],
+                data: dataDetailProvider
+                    .dataDetailModel.results!.characterCredits,
               ),
               const Text('Teams'),
               const Divider(),
               GridPropertiesItems(
                 errorMessage: 'No teams found',
-                data: dataDetailProvider.dataDetailModel['results']
-                    ['team_credits'],
+                data: dataDetailProvider.dataDetailModel.results!.teamCredits,
               ),
               const Text('Locations'),
               const Divider(),
               GridPropertiesItems(
                 errorMessage: 'No locations found',
-                data: dataDetailProvider.dataDetailModel['results']
-                    ['location_credits'],
+                data:
+                    dataDetailProvider.dataDetailModel.results!.locationCredits,
               ),
             ]),
           ),

@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:comic_book/services/api_client.dart';
 
+import '../domain/domains.dart';
+
 class IssuesRepository {
   final client = ApiClient('https://comicvine.gamespot.com/api/issues');
 
@@ -12,6 +14,6 @@ class IssuesRepository {
       'limit': limit.toString(),
       'offset': offset.toString(),
     });
-    return jsonDecode(response.body);
+    return LastIssuesModel.fromMap(jsonDecode(response.body));
   }
 }

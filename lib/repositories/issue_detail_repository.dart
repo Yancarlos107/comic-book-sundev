@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import '../domain/domains.dart';
 import '../services/api_client.dart';
 
 class IssueDetailRepository {
@@ -9,6 +10,6 @@ class IssueDetailRepository {
       'api_key': '6e3b959b1fcb098ce43cbba926e784aa51185e27',
       'format': 'json',
     });
-    return json.decode(response.body);
+    return IssueDetailResult.fromMap(jsonDecode(response.body));
   }
 }

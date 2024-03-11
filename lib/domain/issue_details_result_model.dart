@@ -9,7 +9,7 @@ class IssueDetailResult {
   int numberOfPageResults;
   int numberOfTotalResults;
   int statusCode;
-  IssueDetail results;
+  IssueDetail? results;
   String version;
 
   IssueDetailResult({
@@ -47,7 +47,7 @@ class IssueDetailResult {
         "number_of_page_results": numberOfPageResults,
         "number_of_total_results": numberOfTotalResults,
         "status_code": statusCode,
-        "results": results.toMap(),
+        "results": results?.toMap(),
         "version": version,
       };
 }

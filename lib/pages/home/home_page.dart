@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/controllers.dart';
@@ -88,15 +87,15 @@ class _HomeContentState extends State<HomeContent> {
           crossAxisCount: homeController.count,
           childAspectRatio: homeController.ratio,
           children: List.generate(
-            dataProvider.dataIssues['results'].length,
+            dataProvider.dataIssues.results.length,
             (index) {
-              final item = dataProvider.dataIssues['results'][index];
+              final item = dataProvider.dataIssues.results[index];
               return GridItemView(
-                url: item['image']['original_url'],
-                name: item['name'],
-                number: item['issue_number'].toString(),
-                date: item['date_added'],
-                detailUrl: item['api_detail_url'],
+                url: item.image.originalUrl,
+                name: item.name,
+                number: item.issueNumber,
+                date: item.dateAdded.toString(),
+                detailUrl: item.apiDetailUrl,
               );
             },
           ),

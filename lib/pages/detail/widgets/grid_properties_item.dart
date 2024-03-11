@@ -24,7 +24,7 @@ class GridPropertiesItems extends StatelessWidget {
               (index) {
                 final item = data[index];
                 return GrindInformationItem(
-                  name: item['name'],
+                  name: item.name,
                 );
               },
             ),

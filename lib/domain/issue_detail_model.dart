@@ -4,7 +4,7 @@ import 'package:comic_book/domain/domains.dart';
 
 class IssueDetail {
   dynamic aliases;
-  String apiDetailUrl;
+  String? apiDetailUrl;
   List<AssociatedImage> associatedImages;
   List<VolumeIssueDetail> characterCredits;
   List<dynamic> characterDiedIn;
@@ -13,7 +13,7 @@ class IssueDetail {
   DateTime dateAdded;
   DateTime dateLastUpdated;
   dynamic deck;
-  String description;
+  String? description;
   dynamic firstAppearanceCharacters;
   dynamic firstAppearanceConcepts;
   dynamic firstAppearanceLocations;
@@ -23,15 +23,15 @@ class IssueDetail {
   bool hasStaffReview;
   int id;
   ImageIssue image;
-  String issueNumber;
+  String? issueNumber;
   List<VolumeIssueDetail> locationCredits;
-  String name;
+  String? name;
   List<dynamic> objectCredits;
   List<VolumeIssueDetail> personCredits;
-  String siteDetailUrl;
+  String? siteDetailUrl;
   dynamic storeDate;
   List<dynamic> storyArcCredits;
-  List<dynamic> teamCredits;
+  List<VolumeIssueDetail> teamCredits;
   List<dynamic> teamDisbandedIn;
   VolumeIssueDetail volume;
 
@@ -110,7 +110,8 @@ class IssueDetail {
         storeDate: json["store_date"],
         storyArcCredits:
             List<dynamic>.from(json["story_arc_credits"].map((x) => x)),
-        teamCredits: List<dynamic>.from(json["team_credits"].map((x) => x)),
+        teamCredits: List<VolumeIssueDetail>.from(
+            json["team_credits"].map((x) => VolumeIssueDetail.fromMap(x))),
         teamDisbandedIn:
             List<dynamic>.from(json["team_disbanded_in"].map((x) => x)),
         volume: VolumeIssueDetail.fromMap(json["volume"]),

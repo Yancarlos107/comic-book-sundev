@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../domain/domains.dart';
 import '../repositories/repositories.dart';
 
 class DataDetailIssueProvider extends ChangeNotifier {
@@ -9,8 +10,16 @@ class DataDetailIssueProvider extends ChangeNotifier {
   String _title = '';
   String _url = '';
 
-  Map _dataDetailModel = {};
-  Map get dataDetailModel => _dataDetailModel;
+  IssueDetailResult _dataDetailModel = IssueDetailResult(
+      error: '',
+      statusCode: 0,
+      results: null,
+      version: '',
+      limit: 0,
+      offset: 0,
+      numberOfPageResults: 0,
+      numberOfTotalResults: 0);
+  IssueDetailResult get dataDetailModel => _dataDetailModel;
   bool get isLoading => _isLoading;
   bool get hasError => _errorMessage.isNotEmpty;
   String get errorMessage => _errorMessage;

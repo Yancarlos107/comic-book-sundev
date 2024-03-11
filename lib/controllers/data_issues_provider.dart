@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../domain/domains.dart';
 import '../repositories/issues_repository.dart';
 
 class DataIssuesProvider extends ChangeNotifier {
@@ -9,8 +10,17 @@ class DataIssuesProvider extends ChangeNotifier {
   int offset = 0;
   int limit = 20;
 
-  Map _dataIssues = {};
-  Map get dataIssues => _dataIssues;
+  LastIssuesModel _dataIssues = LastIssuesModel(
+    error: '',
+    limit: 0,
+    offset: 0,
+    numberOfPageResults: 0,
+    numberOfTotalResults: 0,
+    statusCode: 0,
+    results: [],
+    version: '',
+  );
+  LastIssuesModel get dataIssues => _dataIssues;
   bool get isLoading => _isLoading;
   bool get hasError => _errorMessage.isNotEmpty;
   String get errorMessage => _errorMessage;
@@ -26,11 +36,11 @@ class DataIssuesProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> fetchMoreDataIssues() async {
+  /* Future<void> fetchMoreDataIssues() async {
     offset += limit;
     final moreDataIssues =
         await _dataIssuesRepository.fetchIssues(limit, offset);
     _dataIssues.addAll(moreDataIssues);
     notifyListeners();
-  }
+  } */
 }
