@@ -32,9 +32,9 @@ class DecorationApp {
     ),
   );
 
-  static TextStyle formFieldText = TextStyle(
-      color: ColorsContstant.primaryColor,
-      fontSize: 16,
+  static TextStyle formFieldText = const TextStyle(
+      color: Colors.white,
+      fontSize: 20,
       fontFamily: 'Manrope',
       fontWeight: FontWeight.w400);
 
