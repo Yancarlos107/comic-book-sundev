@@ -15,7 +15,7 @@ Este archivo lo encontraran en el siguiente link:
 
 ## Prerequisitos:
 
-Aunque flutter suele mantener un buen nivel de retrocomtibilidad, se indican las versiones con las cuales se creo el proyecto y las cuales aseguraran un correcto funcionamiento para el mismo.
+Aunque flutter suele mantener un buen nivel de retrocompatibilidad, se indican las versiones con las cuales se creo el proyecto y las cuales aseguraran un correcto funcionamiento para el mismo.
 
 - Flutter: 3.13.9
 - Dart: 3.1.5
