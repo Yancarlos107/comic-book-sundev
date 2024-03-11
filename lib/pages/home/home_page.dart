@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
         width: double.infinity,
         child: Consumer<HomeController>(builder: (context, homeController, __) {
           return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -56,70 +56,86 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class HomeContent extends StatelessWidget {
+class HomeContent extends StatefulWidget {
   const HomeContent({
     super.key,
   });
 
   @override
+  State<HomeContent> createState() => _HomeContentState();
+}
+
+class _HomeContentState extends State<HomeContent> {
+  @override
+  void initState() {
+    Provider.of<DataIssuesProvider>(context, listen: false).fetchDataIssues();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final homeController = Provider.of<HomeController>(context);
+    final dataProvider = Provider.of<DataIssuesProvider>(context);
     String fecha = "2008-06-06 11:10:09";
     DateTime fechaConvertida = DateTime.parse(fecha);
     String fechaFormateada = DateFormat.yMMMMd().format(fechaConvertida);
-    return FutureBuilder(
-        future: null,
-        builder: (context, snapshot) {
-          return Expanded(
-              child: GridView.count(
-            crossAxisCount: homeController.count,
-            childAspectRatio: homeController.ratio,
-            children: [
-              GridItemView(
-                  fechaFormateada: fechaFormateada,
-                  url:
-                      'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
-                  name: 'The Amazing Spider',
-                  number: '1'),
-              GridItemView(
-                  fechaFormateada: fechaFormateada,
-                  url:
-                      'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
-                  name: 'The Amazing Spider',
-                  number: '1'),
-              GridItemView(
-                  fechaFormateada: fechaFormateada,
-                  url:
-                      'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
-                  name: 'The Amazing Spider',
-                  number: '1'),
-              GridItemView(
-                  fechaFormateada: fechaFormateada,
-                  url:
-                      'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
-                  name: 'The Amazing Spider',
-                  number: '1'),
-              GridItemView(
-                  fechaFormateada: fechaFormateada,
-                  url:
-                      'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
-                  name: 'The Amazing Spider',
-                  number: '1'),
-              GridItemView(
-                  fechaFormateada: fechaFormateada,
-                  url:
-                      'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
-                  name: 'The Amazing Spider',
-                  number: '1'),
-              GridItemView(
-                  fechaFormateada: fechaFormateada,
-                  url:
-                      'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
-                  name: 'The Amazing Spider',
-                  number: '1')
-            ],
-          ));
-        });
+
+    if (dataProvider.isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    } else if (dataProvider.hasError) {
+      return Center(child: Text('Error: ${dataProvider.errorMessage}'));
+    } else {
+      return Expanded(
+        child: GridView.count(
+          crossAxisCount: homeController.count,
+          childAspectRatio: homeController.ratio,
+          children: [
+            GridItemView(
+                fechaFormateada: fechaFormateada,
+                url:
+                    'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
+                name: 'The Amazing Spider',
+                number: '1'),
+            GridItemView(
+                fechaFormateada: fechaFormateada,
+                url:
+                    'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
+                name: 'The Amazing Spider',
+                number: '1'),
+            GridItemView(
+                fechaFormateada: fechaFormateada,
+                url:
+                    'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
+                name: 'The Amazing Spider',
+                number: '1'),
+            GridItemView(
+                fechaFormateada: fechaFormateada,
+                url:
+                    'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
+                name: 'The Amazing Spider',
+                number: '1'),
+            GridItemView(
+                fechaFormateada: fechaFormateada,
+                url:
+                    'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
+                name: 'The Amazing Spider',
+                number: '1'),
+            GridItemView(
+                fechaFormateada: fechaFormateada,
+                url:
+                    'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
+                name: 'The Amazing Spider',
+                number: '1'),
+            GridItemView(
+                fechaFormateada: fechaFormateada,
+                url:
+                    'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
+                name: 'The Amazing Spider',
+                number: '1')
+          ],
+        ),
+      );
+    }
   }
 }
 
