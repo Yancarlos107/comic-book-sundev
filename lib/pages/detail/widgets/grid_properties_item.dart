@@ -18,7 +18,7 @@ class GridPropertiesItems extends StatelessWidget {
       crossAxisCount: 2,
       childAspectRatio: 5,
       children: data.isEmpty
-          ? [Text(errorMessage)]
+          ? [Text(errorMessage, style: const TextStyle(fontSize: 18))]
           : List.generate(
               data.length,
               (index) {

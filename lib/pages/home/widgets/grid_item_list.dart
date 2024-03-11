@@ -35,8 +35,13 @@ class GridItemList extends StatelessWidget {
             Text(
               '$name #$number',
               textAlign: TextAlign.center,
+              style:
+                  const TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
             ),
-            Text(date),
+            Text(
+              date,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
           ],
         ))
       ]),

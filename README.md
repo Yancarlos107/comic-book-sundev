@@ -1,16 +1,29 @@
-# comic_book
+# Comic Book App
 
-A new Flutter project.
+## Pasos para inicializar el proyecto y construir la aplicación:
 
-## Getting Started
+1. Modificar el archivo `.env` con la `api_key` del sitio de cómics. Si no tienes una `api_key`, puedes utilizar la siguiente: `'6e3b959b1fcb098ce43cbba926e784aa51185e27'`.
+   
+2. Ejecutar el siguiente comando para instalar todas las dependencias requeridas: flutter pub get
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+3. Ejecutar el comando: flutter run
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Asegurándose de tener un dispositivo conectado y la depuración por USB activa.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+4. Si no deseas correr el programa desde un dispositivo conectado, puedes construir un APK de lanzamiento ejecutando: flutter build apk --release
+
+
+5. En la carpeta `build/app/outputs/flutter-apk`, encontrarás el archivo APK listo para ser instalado.
+
+## Consideraciones del proyecto:
+
+Se hace entrega de la aplicación teniendo en cuenta la información proporcionada en el archivo con las instrucciones y algunos de los puntos opcionales que se indicaron.
+
+## Qué hubiera mejorado con más tiempo:
+
+- Agregar un poco de personalización en algunos estilos de textos.
+- Incluir un botón o un pull-to-refresh para enviar nuevamente una solicitud de peticiones desde la pantalla.
+- Implementar un stream que esté escuchando el estado de conexión a internet para volver a solicitar los datos.
+- Implementar un infinite scroll manejando el scroll controller de la pantalla, para solicitar más datos cuando el usuario se desplace por la aplicación.
+

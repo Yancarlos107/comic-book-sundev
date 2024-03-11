@@ -51,27 +51,30 @@ class _DetailsContentState extends State<DetailsContent> {
           );
         }
         return SingleChildScrollView(
-          child: SizedBox(
+          child: Container(
+            padding: EdgeInsets.only(
+                top: MediaQuery.of(context).padding.top, left: 20, right: 20),
             width: double.infinity,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               ImageIssueDetails(
                   url: dataDetailProvider
                       .dataDetailModel.results!.image.originalUrl),
-              const Text('Characters'),
+              const SizedBox(height: 20),
+              const Text('Characters', style: TextStyle(fontSize: 20)),
               const Divider(),
               GridPropertiesItems(
                 errorMessage: 'No characters found',
                 data: dataDetailProvider
                     .dataDetailModel.results!.characterCredits,
               ),
-              const Text('Teams'),
+              const Text('Teams', style: TextStyle(fontSize: 20)),
               const Divider(),
               GridPropertiesItems(
                 errorMessage: 'No teams found',
                 data: dataDetailProvider.dataDetailModel.results!.teamCredits,
               ),
-              const Text('Locations'),
+              const Text('Locations', style: TextStyle(fontSize: 20)),
               const Divider(),
               GridPropertiesItems(
                 errorMessage: 'No locations found',
