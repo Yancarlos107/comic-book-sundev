@@ -8,9 +8,10 @@ class DetailIssuePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dataDetailProvider = Provider.of<DataDetailIssueProvider>(context);
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Comic Book'),
+          title: Text(dataDetailProvider.title),
         ),
         body: const DetailsContent());
   }
@@ -29,7 +30,7 @@ class _DetailsContentState extends State<DetailsContent> {
   @override
   void initState() {
     Provider.of<DataDetailIssueProvider>(context, listen: false)
-        .fetchDataDetail('https://comicvine.gamespot.com/api/issue/4000-6');
+        .fetchDataDetail();
     super.initState();
   }
 

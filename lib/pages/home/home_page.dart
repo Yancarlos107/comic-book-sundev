@@ -98,6 +98,7 @@ class _HomeContentState extends State<HomeContent> {
                 name: item['name'],
                 number: item['issue_number'].toString(),
                 fechaFormateada: fechaFormateada,
+                detailUrl: item['api_detail_url'],
               );
             },
           ),
@@ -158,18 +159,24 @@ class GridItemView extends StatelessWidget {
     required this.url,
     required this.name,
     required this.number,
+    required this.detailUrl,
   });
 
   final String fechaFormateada;
   final String url;
   final String? name;
   final String number;
+  final String detailUrl;
 
   @override
   Widget build(BuildContext context) {
     final homeController = Provider.of<HomeController>(context);
     return GestureDetector(
       onTap: () {
+        Provider.of<DataDetailIssueProvider>(context, listen: false).setUrl =
+            detailUrl;
+        Provider.of<DataDetailIssueProvider>(context, listen: false).setTitle =
+            name == null ? '#$number' : '$name #$number';
         Navigator.pushNamed(context, '/detail');
       },
       child: homeController.viewType.index == 0
