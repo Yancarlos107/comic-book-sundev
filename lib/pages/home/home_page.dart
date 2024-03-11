@@ -89,50 +89,18 @@ class _HomeContentState extends State<HomeContent> {
         child: GridView.count(
           crossAxisCount: homeController.count,
           childAspectRatio: homeController.ratio,
-          children: [
-            GridItemView(
+          children: List.generate(
+            dataProvider.dataIssues['results'].length,
+            (index) {
+              final item = dataProvider.dataIssues['results'][index];
+              return GridItemView(
+                url: item['image']['original_url'],
+                name: item['name'],
+                number: item['issue_number'].toString(),
                 fechaFormateada: fechaFormateada,
-                url:
-                    'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
-                name: 'The Amazing Spider',
-                number: '1'),
-            GridItemView(
-                fechaFormateada: fechaFormateada,
-                url:
-                    'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
-                name: 'The Amazing Spider',
-                number: '1'),
-            GridItemView(
-                fechaFormateada: fechaFormateada,
-                url:
-                    'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
-                name: 'The Amazing Spider',
-                number: '1'),
-            GridItemView(
-                fechaFormateada: fechaFormateada,
-                url:
-                    'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
-                name: 'The Amazing Spider',
-                number: '1'),
-            GridItemView(
-                fechaFormateada: fechaFormateada,
-                url:
-                    'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
-                name: 'The Amazing Spider',
-                number: '1'),
-            GridItemView(
-                fechaFormateada: fechaFormateada,
-                url:
-                    'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
-                name: 'The Amazing Spider',
-                number: '1'),
-            GridItemView(
-                fechaFormateada: fechaFormateada,
-                url:
-                    'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg',
-                name: 'The Amazing Spider',
-                number: '1')
-          ],
+              );
+            },
+          ),
         ),
       );
     }
@@ -142,29 +110,40 @@ class _HomeContentState extends State<HomeContent> {
 class GridItemList extends StatelessWidget {
   const GridItemList({
     super.key,
+    required this.fechaFormateada,
+    required this.url,
+    required this.name,
+    required this.number,
   });
+
+  final String fechaFormateada;
+  final String url;
+  final String name;
+  final String number;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(8),
-      child: const Row(children: [
+      child: Row(children: [
         Expanded(
           child: Image(
-            image: NetworkImage(
-                'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg'),
+            image: NetworkImage(url),
             fit: BoxFit.contain,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
         Expanded(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('The Amazing Spider'),
-            Text('June 6, 2008'),
+            Text(
+              '$name #$number',
+              textAlign: TextAlign.center,
+            ),
+            Text(fechaFormateada),
           ],
         ))
       ]),
@@ -183,7 +162,7 @@ class GridItemView extends StatelessWidget {
 
   final String fechaFormateada;
   final String url;
-  final String name;
+  final String? name;
   final String number;
 
   @override
@@ -194,10 +173,14 @@ class GridItemView extends StatelessWidget {
         Navigator.pushNamed(context, '/detail');
       },
       child: homeController.viewType.index == 0
-          ? const GridItemList()
+          ? GridItemList(
+              url: url,
+              name: name ?? '',
+              number: number,
+              fechaFormateada: fechaFormateada)
           : GridItemGrid(
               url: url,
-              name: name,
+              name: name ?? '',
               number: number,
               fechaFormateada: fechaFormateada),
     );

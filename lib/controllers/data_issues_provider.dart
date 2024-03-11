@@ -16,7 +16,6 @@ class DataIssuesProvider extends ChangeNotifier {
   String get errorMessage => _errorMessage;
 
   Future<void> fetchDataIssues() async {
-    print('fetchDataIssues');
     try {
       _dataIssues = await _dataIssuesRepository.fetchIssues(limit, offset);
     } catch (e) {
