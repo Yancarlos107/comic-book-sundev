@@ -1,6 +1,17 @@
 # Comic Book App
 
-##
+## Credenciales de ingreso:
+
+- correo: sundev@test.com
+- clave: 123456
+
+sin embargo sientansen libres de ingresar usando el registro o la autenticación de google con su correo.
+
+## Como en este caso el proyecto de firebase esta creado sobre mi cuenta personal, se realiza el cargue de la apk directamente para que puedan instalarla en cualquier dispositivo Android
+
+Este archivo lo encontraran en el siguiente link:
+
+- 'https://we.tl/t-C83NxRGFJ3'
 
 ## (Bajo un entorno de desarrollo en equipo)Pasos para inicializar el proyecto y construir la aplicación:
 
