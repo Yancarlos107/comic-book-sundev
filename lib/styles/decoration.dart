@@ -1,16 +1,15 @@
+import 'package:comic_book/styles/colors_constant.dart';
 import 'package:flutter/material.dart';
 
 class DecorationApp {
-  static Color primaryColor = Colors.yellow.shade300;
-
   static TextStyle textFormStyle = TextStyle(
-    color: primaryColor,
+    color: ColorsContstant.primaryColor,
     fontSize: 20,
     fontFamily: 'Edo',
   );
 
   static TextStyle textErrorFormStyle = TextStyle(
-    color: primaryColor,
+    color: ColorsContstant.primaryColor,
     fontSize: 14,
     fontFamily: 'Edo',
   );
@@ -34,11 +33,11 @@ class DecorationApp {
   );
 
   static TextStyle formFieldText = TextStyle(
-      color: primaryColor,
+      color: ColorsContstant.primaryColor,
       fontSize: 16,
       fontFamily: 'Manrope',
       fontWeight: FontWeight.w400);
 
-  static TextStyle titleStyle =
-      TextStyle(fontSize: 60, fontFamily: 'Edo', color: Colors.yellow.shade300);
+  static TextStyle titleStyle = TextStyle(
+      fontSize: 60, fontFamily: 'Edo', color: ColorsContstant.primaryColor);
 }

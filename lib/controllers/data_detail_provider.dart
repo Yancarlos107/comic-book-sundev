@@ -25,7 +25,6 @@ class DataDetailIssueProvider extends ChangeNotifier {
   }
 
   Future<void> fetchDataDetail() async {
-    print(_url);
     _isLoading = true;
     try {
       _dataDetailModel = await _dataDetailRepository.getIssueDetail(_url);

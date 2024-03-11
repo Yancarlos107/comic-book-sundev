@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../../styles/decoration.dart';
 
-class InitialFormTextField extends StatefulWidget {
+class CustomFormTextField extends StatefulWidget {
   final String hintText;
   final String errorText;
   final TextEditingController? controller;
 
-  const InitialFormTextField({
+  const CustomFormTextField({
     super.key,
     required this.hintText,
     required this.errorText,
@@ -15,10 +15,10 @@ class InitialFormTextField extends StatefulWidget {
   });
 
   @override
-  State<InitialFormTextField> createState() => _InitialFormTextFieldState();
+  State<CustomFormTextField> createState() => _CustomFormTextFieldState();
 }
 
-class _InitialFormTextFieldState extends State<InitialFormTextField> {
+class _CustomFormTextFieldState extends State<CustomFormTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(

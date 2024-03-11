@@ -4,6 +4,9 @@ import 'package:comic_book/controllers/auth_controller.dart';
 import 'package:comic_book/pages/initial/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
+import '../../widgets/custom_form_text_field.dart';
+import '../../widgets/custom_sign_button.dart';
+
 class InitialPage extends StatelessWidget {
   const InitialPage({super.key});
 
@@ -50,7 +53,7 @@ class _InitialContentState extends State<InitialContent> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.05,
           ),
-          InitialFormTextField(
+          CustomFormTextField(
             hintText: 'Email',
             errorText: 'Enter an valid email',
             controller: authProvider.userController,
@@ -58,7 +61,7 @@ class _InitialContentState extends State<InitialContent> {
           SizedBox(
             height: authProvider.height,
           ),
-          InitialFormTextField(
+          CustomFormTextField(
             hintText: 'Password',
             errorText: 'Enter an valid password',
             controller: authProvider.passwordController,
@@ -66,7 +69,7 @@ class _InitialContentState extends State<InitialContent> {
           SizedBox(
             height: authProvider.height,
           ),
-          InitialLoginButton(text: 'Login', onPressed: authProvider.signInUser),
+          CustomSignButton(text: 'Login', onPressed: authProvider.signInUser),
           SizedBox(
             height: authProvider.height,
           ),

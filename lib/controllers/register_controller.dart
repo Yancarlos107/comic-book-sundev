@@ -15,30 +15,35 @@ class RegisterProvider extends ChangeNotifier {
       _confirmPasswordController;
   double get height => _height;
 
-  void signUserUp() async {
-    /* showDialog(
-        context: context,
-        builder: (context) => const Center(child: CircularProgressIndicator())); */
+  final _isLoading = false;
+  String _errorMessage = '';
 
+  set errorMessage(String value) {
+    _errorMessage = value;
+    notifyListeners();
+  }
+
+  bool get isLoading => _isLoading;
+  bool get isError => _errorMessage.isNotEmpty;
+  String get errorMessage => _errorMessage;
+  bool get isPasswordMatch =>
+      _passwordController.text == _confirmPasswordController.text;
+
+  void signUserUp() async {
     try {
       if (passwordController.text == confirmPasswordController.text) {
         await _auth.createUserWithEmailAndPassword(
             email: userController.text, password: passwordController.text);
-        /* Navigator.pop(context); */
       } else {
-        /*  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Passwords do not match'),
-          duration: Duration(seconds: 5),
-        )); */
+        errorMessage = 'Password does not match';
       }
-      /* Navigator.pop(context); */
     } on FirebaseAuthException catch (e) {
-      print(e.message);
-      /* Navigator.pop(context);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(e.message!),
-        duration: const Duration(seconds: 5),
-      )); */
+      errorMessage = e.message!;
+    } finally {
+      userController.clear();
+      passwordController.clear();
+      confirmPasswordController.clear();
+      notifyListeners();
     }
   }
 }

@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/controllers.dart';
+import 'widgets/grid_item_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -76,9 +77,6 @@ class _HomeContentState extends State<HomeContent> {
   Widget build(BuildContext context) {
     final homeController = Provider.of<HomeController>(context);
     final dataProvider = Provider.of<DataIssuesProvider>(context);
-    String fecha = "2008-06-06 11:10:09";
-    DateTime fechaConvertida = DateTime.parse(fecha);
-    String fechaFormateada = DateFormat.yMMMMd().format(fechaConvertida);
 
     if (dataProvider.isLoading) {
       return const Center(child: CircularProgressIndicator());
@@ -97,7 +95,7 @@ class _HomeContentState extends State<HomeContent> {
                 url: item['image']['original_url'],
                 name: item['name'],
                 number: item['issue_number'].toString(),
-                fechaFormateada: fechaFormateada,
+                date: item['date_added'],
                 detailUrl: item['api_detail_url'],
               );
             },
@@ -105,133 +103,5 @@ class _HomeContentState extends State<HomeContent> {
         ),
       );
     }
-  }
-}
-
-class GridItemList extends StatelessWidget {
-  const GridItemList({
-    super.key,
-    required this.fechaFormateada,
-    required this.url,
-    required this.name,
-    required this.number,
-  });
-
-  final String fechaFormateada;
-  final String url;
-  final String name;
-  final String number;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(8),
-      child: Row(children: [
-        Expanded(
-          child: Image(
-            image: NetworkImage(url),
-            fit: BoxFit.contain,
-          ),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Expanded(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              '$name #$number',
-              textAlign: TextAlign.center,
-            ),
-            Text(fechaFormateada),
-          ],
-        ))
-      ]),
-    );
-  }
-}
-
-class GridItemView extends StatelessWidget {
-  const GridItemView({
-    super.key,
-    required this.fechaFormateada,
-    required this.url,
-    required this.name,
-    required this.number,
-    required this.detailUrl,
-  });
-
-  final String fechaFormateada;
-  final String url;
-  final String? name;
-  final String number;
-  final String detailUrl;
-
-  @override
-  Widget build(BuildContext context) {
-    final homeController = Provider.of<HomeController>(context);
-    return GestureDetector(
-      onTap: () {
-        Provider.of<DataDetailIssueProvider>(context, listen: false).setUrl =
-            detailUrl;
-        Provider.of<DataDetailIssueProvider>(context, listen: false).setTitle =
-            name == null ? '#$number' : '$name #$number';
-        Navigator.pushNamed(context, '/detail');
-      },
-      child: homeController.viewType.index == 0
-          ? GridItemList(
-              url: url,
-              name: name ?? '',
-              number: number,
-              fechaFormateada: fechaFormateada)
-          : GridItemGrid(
-              url: url,
-              name: name ?? '',
-              number: number,
-              fechaFormateada: fechaFormateada),
-    );
-  }
-}
-
-class GridItemGrid extends StatelessWidget {
-  const GridItemGrid({
-    super.key,
-    required this.url,
-    required this.name,
-    required this.number,
-    required this.fechaFormateada,
-  });
-
-  final String url;
-  final String name;
-  final String number;
-  final String fechaFormateada;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: GridTile(
-          child: Column(
-        children: [
-          Expanded(
-              child: Image(
-            image: NetworkImage(url),
-            fit: BoxFit.cover,
-          )),
-          const SizedBox(
-            height: 5,
-          ),
-          Text(
-            '$name #$number',
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.center,
-            maxLines: 1,
-          ),
-          Text(fechaFormateada),
-        ],
-      )),
-    );
   }
 }

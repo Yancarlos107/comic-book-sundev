@@ -8,6 +8,9 @@ class AuthenticationProvider with ChangeNotifier {
 
   final validSession = FirebaseAuth.instance.authStateChanges();
 
+  final _isLoading = false;
+  String _errorMessage = '';
+
   double _height = 20.0;
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -19,27 +22,26 @@ class AuthenticationProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> signInUser() async {
-    /* showDialog(
-      context: context,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
-    ); */
+  set errorMessage(String value) {
+    _errorMessage = value;
+    notifyListeners();
+  }
 
+  bool get isLoading => _isLoading;
+  bool get isError => _errorMessage.isNotEmpty;
+  String get errorMessage => _errorMessage;
+
+  Future<void> signInUser() async {
     try {
       await _auth.signInWithEmailAndPassword(
           email: userController.text, password: passwordController.text);
-      /* Navigator.pop(context); */
     } on FirebaseAuthException catch (e) {
-      /* Navigator.pop(context); */
-      print(e.message);
-      /*  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(e.message!),
-        duration: const Duration(seconds: 5),
-      )); */
+      errorMessage = e.message!;
+    } finally {
+      userController.clear();
+      passwordController.clear();
+      notifyListeners();
     }
-    userController.clear();
-    passwordController.clear();
-    notifyListeners();
   }
 
   void signuserOut() async {

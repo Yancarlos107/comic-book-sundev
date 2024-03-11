@@ -9,7 +9,6 @@ class IssueDetailRepository {
       'api_key': '6e3b959b1fcb098ce43cbba926e784aa51185e27',
       'format': 'json',
     });
-    print(json.decode(response.body));
     return json.decode(response.body);
   }
 }

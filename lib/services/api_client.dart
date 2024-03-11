@@ -55,7 +55,6 @@ class ApiClient {
 
   void handleResponse(Response response) {
     if (response.statusCode >= 400) {
-      print(response.body);
       throw ApiException(response.statusCode, response.body);
     }
   }

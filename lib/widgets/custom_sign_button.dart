@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class InitialLoginButton extends StatelessWidget {
+class CustomSignButton extends StatelessWidget {
   final String text;
   final Function()? onPressed;
 
-  const InitialLoginButton({
+  const CustomSignButton({
     super.key,
     required this.onPressed,
     required this.text,

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/register_controller.dart';
+import '../../widgets/custom_form_text_field.dart';
+import '../../widgets/custom_sign_button.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -35,22 +37,22 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               Text('Register', style: DecorationApp.titleStyle),
               const SizedBox(height: 20),
-              InitialFormTextField(
+              CustomFormTextField(
                   hintText: 'email',
                   errorText: '',
                   controller: registerProvider.userController),
               const SizedBox(height: 20),
-              InitialFormTextField(
+              CustomFormTextField(
                   hintText: 'password',
                   errorText: '',
                   controller: registerProvider.passwordController),
               const SizedBox(height: 20),
-              InitialFormTextField(
+              CustomFormTextField(
                   hintText: 'confirm passowrd',
                   errorText: '',
                   controller: registerProvider.confirmPasswordController),
               const SizedBox(height: 20),
-              InitialLoginButton(
+              CustomSignButton(
                 text: 'Register',
                 onPressed: registerProvider.signUserUp,
               ),
