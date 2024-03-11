@@ -70,28 +70,33 @@ class GridItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(5),
-      child: const Row(children: [
-        Expanded(
-          child: Image(
-            image: NetworkImage(
-                'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg'),
-            fit: BoxFit.contain,
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/detail');
+      },
+      child: Container(
+        margin: const EdgeInsets.all(5),
+        child: const Row(children: [
+          Expanded(
+            child: Image(
+              image: NetworkImage(
+                  'https://comicvine.gamespot.com/a/uploads/original/0/4/22-989-23-1-blackhawk.jpg'),
+              fit: BoxFit.contain,
+            ),
           ),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Expanded(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('The Amazing Spider'),
-            Text('June 6, 2008'),
-          ],
-        ))
-      ]),
+          SizedBox(
+            width: 10,
+          ),
+          Expanded(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text('The Amazing Spider'),
+              Text('June 6, 2008'),
+            ],
+          ))
+        ]),
+      ),
     );
   }
 }
