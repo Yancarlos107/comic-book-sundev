@@ -13,6 +13,13 @@ Este archivo lo encontraran en el siguiente link:
 
 - 'https://we.tl/t-C83NxRGFJ3'
 
+## Prerequisitos:
+
+Aunque flutter suele mantener un buen nivel de retrocomtibilidad, se indican las versiones con las cuales se creo el proyecto y las cuales aseguraran un correcto funcionamiento para el mismo.
+
+- Flutter: 3.13.9
+- Dart: 3.1.5
+
 ## (Bajo un entorno de desarrollo en equipo)Pasos para inicializar el proyecto y construir la aplicación:
 
 1. Modificar el archivo `.env` con la `api_key` del sitio de cómics. Si no tienes una `api_key`, puedes utilizar la siguiente: `'6e3b959b1fcb098ce43cbba926e784aa51185e27'`.
