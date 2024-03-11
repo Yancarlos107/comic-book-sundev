@@ -1,16 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
+import '../../controllers/controllers.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  void signuserOut() async {
-    FirebaseAuth.instance.signOut();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthenticationProvider>(context);
     String fecha = "2008-06-06 11:10:09";
     DateTime fechaConvertida = DateTime.parse(fecha);
     String fechaFormateada = DateFormat.yMMMMd().format(fechaConvertida);
@@ -20,7 +18,7 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             color: Colors.black,
-            onPressed: signuserOut,
+            onPressed: authProvider.signuserOut,
             icon: const Icon(Icons.logout_rounded),
           ),
         ],
@@ -45,17 +43,20 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-                child: GridView.count(
-              crossAxisCount: 1,
-              childAspectRatio: 2,
-              children: const [
-                GridItemList(),
-                GridItemList(),
-                GridItemList(),
-                GridItemList()
-              ],
-            )),
+            Consumer<IssuesListController>(
+                builder: (context, issuesListController, __) {
+              return Expanded(
+                  child: GridView.count(
+                crossAxisCount: 1,
+                childAspectRatio: 2,
+                children: const [
+                  GridItemList(),
+                  GridItemList(),
+                  GridItemList(),
+                  GridItemList()
+                ],
+              ));
+            }),
           ],
         ),
       ),

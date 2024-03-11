@@ -9,6 +9,5 @@ class IssuesRepository {
       'format': 'json',
       'limit': '40',
     });
-    print(response.body);
   }
 }
